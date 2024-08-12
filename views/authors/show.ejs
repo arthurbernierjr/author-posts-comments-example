@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/styles.css"/>
+  <title><%= author.name %> Show Page</title>
+</head>
+<body>
+  <a href="/authors/<%=author._id%>/edit">Edit <%= author.name %></a>
+  <h1><%= author.name %>'s Activity</h1>
+  <h2>Post's Written by <%= author.name %></h2>
+  <ul>
+    <% author.posts.forEach((post) => { %>
+      <li>
+        <a href="/posts/<%=post._id%>">
+            <%= post.title %> by <%= author.name %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+  <h2>Comment's Made by <%= author.name %></h2>
+  <ul>
+    <% author.comments.forEach((comment) => { %>
+      <li>
+        <a href="/posts/<%=comment.post%>">
+         Comment by <%= author.name %> on  <%= comment.post %> that reads  <%= comment.content %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

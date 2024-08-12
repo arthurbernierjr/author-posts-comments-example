@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/styles.css"/>
+  <title><%= post.title %></title>
+</head>
+<body>
+  <a href="/posts/<%=post._id%>/edit">Edit <%= post.title %></a>
+  <h1><%= post.title %></h1>
+  <p><%= post.content %></p>
+  <ul>
+    <% post.comments.forEach((comment) => { %>
+      <li>
+        <a href="/posts/<%=comment.post%>">
+         <%= comment.content %> by Author <%= comment.author %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+  <h1>Add a Comment!</h1>
+  <form action="/comments/addTo/<%= post._id %>" method="POST">
+    <label for="content">Write Post Content Here:</label>
+    <input type="text" name="content" id="content"/>
+    <button type="submit">Submit Your Comment</button>
+  </form>
+
+</body>
+</html>
